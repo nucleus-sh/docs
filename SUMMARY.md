@@ -14,3 +14,4 @@
 * [JavaScript module](modules/javascript-module.md)
 * [Python](modules/python.md)
 * [Swift](modules/swift.md)
+* [Browser SDK](modules/browser-sdk.md)
