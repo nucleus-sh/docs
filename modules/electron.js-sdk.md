@@ -1,23 +1,16 @@
----
-description: >-
-  Isomorphic analytics and error tracking library for browser, Node.js and
-  Electron/ NW.js applications.
----
+# Electron.js SDK
 
-# JavaScript module
+_If you're looking to integrate Nucleus into a web application instead, check out the_ [_Browser SDK_](browser-sdk.md)_._
 
 We made it as simple as possible to report the data you need to analyze your app and improve it.
 
 To start using this module, sign up and get an app ID on [Nucleus.sh](https://nucleus.sh).
-
-**Electron:**
 
 This module works in both the renderer and the main process, but **you should use it in one process only, otherwise you'll see duplicate data. We recommend the renderer process with nodeIntegration enabled.**
 
 ### V4.0 breaking changes
 
 * the `.appStarted()` method has been removed and integrated into .init()
-* the module is now 100% compatible with browser and hybrid environments
 * anonymous users are automatically tracked
 * user sessions now expire after 30 mins of inactivity
 * on Electron, the module is now made to be used in 1 process only (renderer recommended)
@@ -34,12 +27,6 @@ Using npm (recommended):
 
 ```bash
 $ npm install nucleus-analytics --save
-```
-
-In the browser:
-
-```
-<script src="https://cdn.jsdelivr.net/gh/nucleus-sh/nucleus-analytics/dist/browser.js"></script>
 ```
 
 ### Usage

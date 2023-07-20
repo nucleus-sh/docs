@@ -25,7 +25,7 @@ If you already have a version or an icon, you can edit the app to set those.
 
 Choose the appropriate module for your application, or use the API to report data if no module is available for your usecase.
 
-* [Javascript / Typescript / Node.js](modules/javascript-module.md)
+* [Javascript / Typescript / Node.js](modules/electron.js-sdk.md)
 * [Python](modules/python.md)
 * [Swift (Mac OS)](modules/swift.md)
 * [Custom Tracking API](reference/tracking-api.md)
