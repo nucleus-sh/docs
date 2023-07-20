@@ -19,8 +19,8 @@ Jump in to the quick start docs and start tracking your app in less than 5 minut
 
 Dive a little deeper and start exploring our API reference to get an idea of what's possible with the modules and our APIs:
 
-{% content-ref url="modules/electron.js-sdk.md" %}
-[electron.js-sdk.md](modules/electron.js-sdk.md)
+{% content-ref url="modules/electron.js.md" %}
+[electron.js.md](modules/electron.js.md)
 {% endcontent-ref %}
 
 {% content-ref url="reference/tracking-api.md" %}

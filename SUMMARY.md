@@ -11,7 +11,7 @@
 
 ## 📦 Modules
 
-* [Electron.js SDK](modules/electron.js-sdk.md)
+* [Electron.js](modules/electron.js.md)
 * [Python](modules/python.md)
 * [Swift](modules/swift.md)
-* [Browser SDK](modules/browser-sdk.md)
+* [Browser](modules/browser.md)

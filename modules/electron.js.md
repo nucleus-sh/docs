@@ -1,6 +1,6 @@
-# Electron.js SDK
+# Electron.js
 
-_If you're looking to integrate Nucleus into a web application instead, check out the_ [_Browser SDK_](browser-sdk.md)_._
+_If you're looking to integrate Nucleus into a web application instead, check out the_ [_Browser SDK_](browser.md)_._
 
 We made it as simple as possible to report the data you need to analyze your app and improve it.
 
