@@ -12,6 +12,6 @@
 ## 📦 Modules
 
 * [Electron.js](modules/electron.js.md)
+* [Browser](modules/browser.md)
 * [Python](modules/python.md)
 * [Swift](modules/swift.md)
-* [Browser](modules/browser.md)

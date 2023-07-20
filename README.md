@@ -23,6 +23,10 @@ Dive a little deeper and start exploring our API reference to get an idea of wha
 [electron.js.md](modules/electron.js.md)
 {% endcontent-ref %}
 
+{% content-ref url="modules/browser.md" %}
+[browser.md](modules/browser.md)
+{% endcontent-ref %}
+
 {% content-ref url="reference/tracking-api.md" %}
 [tracking-api.md](reference/tracking-api.md)
 {% endcontent-ref %}
