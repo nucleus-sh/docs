@@ -1,6 +1,6 @@
 # Browser
 
-![Banner](https://intriguing-lemonade-efa.notion.site/image/https%3A%2F%2Fs3-us-west-2.amazonaws.com%2Fsecure.notion-static.com%2Fb00319ab-5801-40dc-b0f4-5de683b11d61%2Fgithub\_browser\_sdk\_banner.jpg?id=9fabfb89-61d3-4d87-97ff-ef88c9bd8947\&table=block)
+![Nucleus](https://intriguing-lemonade-efa.notion.site/image/https%3A%2F%2Fs3-us-west-2.amazonaws.com%2Fsecure.notion-static.com%2Fb00319ab-5801-40dc-b0f4-5de683b11d61%2Fgithub\_browser\_sdk\_banner.jpg?id=9fabfb89-61d3-4d87-97ff-ef88c9bd8947\&table=block)
 
 ## Table of Contents
 
@@ -85,10 +85,10 @@ Track errors with a name and the Error object.
 Nucleus.trackError(name, error);
 ```
 
-By default Nucleus will listen for `window.onerror` and `window.onunhandledrejection` events and send them to the API. If you want to disable this behaviour, you can set `disableTracking` to `true`:
+By default Nucleus will listen for `window.onerror` and `window.onunhandledrejection` events and send them to the API. If you want to disable this behaviour, you can set `disableErrorReports` to `true`:
 
 ```js
-Nucleus.init('APP_ID', { disableTracking: true })
+Nucleus.init('APP_ID', { disableErrorReports: true })
 ```
 
 ### User Identification
