@@ -14,7 +14,13 @@ To get started with Nucleus, create an account at [Nucleus](https://dash.nucleus
 
 ### Installation
 
-As NPM package (recommended)
+This package has `@react-native-async-storage/async-storage` and `@react-native-community/netinfo` as peer dependencies. Install them first if you don't have them
+
+```bash
+yarn add @react-native-async-storage/async-storage @react-native-community/netinfo
+```
+
+then proceed to install `nucleus-rn` As NPM package (recommended)
 
 ```bash
 # with yarn
