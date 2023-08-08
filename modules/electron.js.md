@@ -4,28 +4,13 @@ _If you're looking to integrate Nucleus into a web application instead, check ou
 
 To start using this module, sign up and get an app ID on [Nucleus.sh](https://nucleus.sh).
 
-This module works in both the renderer and the main process, but **you should use it in one process only, otherwise you'll see duplicate data. For maximum data accuracy, we recommend the renderer process.**
-
-## V4.0 breaking changes
-
-* the `.appStarted()` method has been removed and integrated into .init()
-* anonymous users are automatically tracked
-* user sessions now expire after 30 mins of inactivity
-* on Electron, the module is now made to be used in 1 process only (renderer recommended)
-* The device ID is now different between computer user sessions (existing users will count as new users on the dashboard)
-* `.screen()` has been replaced by `.page()` (but is still available as an alias)
-* the "autoUserId" option has been removed
-* the deprecated `.checkUpdates()` method has been removed
-* events are throttled to 20/s maximum
-* stopped tracking device ram and arch
-
 ## Installation
 
 Using npm or yarn (recommended):
 
 ```bash
-$ npm install nucleus-analytics
-$ yarn add nucleus-analytics
+$ npm install nucleus-desktop
+$ yarn add nucleus-desktop
 ```
 
 ## Usage
@@ -35,13 +20,13 @@ First sign-up and get a tracking ID for your app [here](https://nucleus.sh).
 With ES6 imports:
 
 ```javascript
-import Nucleus from "nucleus-analytics"
+import Nucleus from "nucleus-desktop"
 ```
 
 Or with CommonJS imports:
 
 ```javascript
-const Nucleus = require('nucleus-analytics')
+const Nucleus = require('nucleus-desktop')
 ```
 
 Then:
@@ -66,9 +51,10 @@ You only need to call `init` once.
 You can init Nucleus with options:
 
 ```javascript
-import Nucleus from "nucleus-analytics"
+import Nucleus from "nucleus-desktop"
 
 Nucleus.init("<Your App Id>", {
+  deviceId: null, // device id (optional)
   disableInDev: false, // disable module while in development (default: false)
   disableTracking: false, // completely disable tracking from the start (default: false)
   disableErrorReports: false, // disable errors reporting (default: false)
@@ -188,7 +174,7 @@ Nucleus.track("PLAYED_TRACK", {
 })
 ```
 
-#### Pages and Screen Views (beta)
+#### Pages and Screen Views
 
 You can set up Nucleus to track page visits and screen views in your app.
 
