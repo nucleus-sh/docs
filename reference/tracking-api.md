@@ -10,22 +10,24 @@ Is something missing from the API? Let us know [hello@nucleus.sh](mailto:hello@n
 
 ### Event Types <a href="#events-types" id="events-types"></a>
 
-| Type      | Description                                                                                                                | Requires extra data |
-| --------- | -------------------------------------------------------------------------------------------------------------------------- | ------------------- |
-| init      | First event to send when starting the app                                                                                  | **yes**             |
-| event     | Default type, for reporting actions or anything else                                                                       | no                  |
-| error     | Submit an error, `name` should contain the error type                                                                      | **yes**             |
-| userid    | Set a new user ID for this user                                                                                            | no                  |
-| props     | Set propserties for this user ID based on the `data` field.                                                                | no                  |
-| heartbeat | _Websockets only_: send every minute to keep the connection on. This only require to pass the **machineId**field alongside | no                  |
+| Type      | Description                                                                                     | Requires extra data |
+| --------- | ----------------------------------------------------------------------------------------------- | ------------------- |
+| init      | First event to send when starting the app                                                       | **yes**             |
+| event     | Default type, for reporting actions or anything else                                            | no                  |
+| error     | Submit an error, `name` should contain the error type                                           | **yes**             |
+| userid    | Set a new user ID for this user                                                                 | no                  |
+| props     | Set properties for this user ID based on the `data` field.                                      | no                  |
+| heartbeat | _Websocket only_: send every minute to keep the connection on. **machineId** field is required. | no                  |
 
 The first thing you need to send when the user opens the app is an **init** event upon which most of the analytics relies on.&#x20;
 
 **If you don't send it first, no data will appear in your dashboard.**
 
+Nucleus uses the **init** event to track the number of sessions. Make sure you send a new **init** event whenever a new session is created. We know it might be difficult to track this properly if you're only sending events from your backend. One solution could be to save the last event timestamp of each session in an in-memory storage and create a new session if more than 30 minutes passed since the last request.
+
 ### Events Data <a href="#events-data" id="events-data"></a>
 
-Nucleus expect to receive the analytics data as a JSON object, containing a `data` array property.
+Nucleus expects to receive the analytics data as a JSON object, containing a `data` array property.
 
 This array should contain one or multiple events you want to report.
 
@@ -36,20 +38,20 @@ _Basic events data_
 | type      | String  | optional                                         | Event type, see below for all the possible values (default: "event")                                                                                                  |
 | name      | String  | **required** if `type` is **event** or **error** | Name of the event                                                                                                                                                     |
 | sessionId | Integer | **required**                                     | 4-digits number that identifies the current session                                                                                                                   |
-| date      | String  | optional                                         | Date/time of the event (ISO 8601 or milleseconds since 1970). If not provided we'll use the time the server receives the event.                                       |
+| date      | String  | optional                                         | Date/time of the event (ISO 8601 or milliseconds since 1970). If not provided we'll use the time the server receives the event.                                       |
 | id        | String  | optional                                         | Short ID that will be returned in confirmation                                                                                                                        |
 | userId    | String  | optional                                         | Identify the user with user-facing ID like email, username..                                                                                                          |
 | anonId    | String  | optional                                         | Unique user identifier. Ideally should be a [nanoid](https://github.com/ai/nanoid) of 12 chars. More reliable than _userId_ and can be used to track anonymous users. |
-| deviceId  | String  | **required**                                     | Hashed identifier of the machine (ie mac adress)                                                                                                                      |
-| payload   | Object  | optional                                         | Aditionnal data attached to the event                                                                                                                                 |
+| deviceId  | String  | **required**                                     | Hashed identifier of the machine (ie mac address)                                                                                                                     |
+| payload   | Object  | optional                                         | Additional data attached to the event                                                                                                                                 |
 
 _Extra events data_
 
-If you are reporting either an **error** or the first **init** event, you can attach those extra data:
+If you are reporting either an **error** or the first **init** event, you can attach the following extra data:
 
 | Parameter | Type    | Optional | Example  | Description                                            |
 | --------- | ------- | -------- | -------- | ------------------------------------------------------ |
-| platform  | String  | required | _darwin_ | Usually 'win32', 'windows', 'mac', 'darwin' or 'linux' |
+| platform  | String  | required | _Darwin_ | Usually 'win32', 'windows', 'mac', 'darwin' or 'linux' |
 | osVersion | String  | required | _18.2.0_ | Current installed version of the OS                    |
 | totalRam  | Integer | required | 8        | Total RAM available on the user device                 |
 | version   | String  | required | _0.1.0_  | Version of the app installed                           |

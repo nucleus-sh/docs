@@ -11,7 +11,7 @@
 
 ## 📦 Modules
 
-* [Electron.js](modules/electron.js.md)
+* [Electron.js / Tauri](modules/electron.js-tauri.md)
 * [Browser](modules/browser.md)
 * [Python](modules/python.md)
 * [Swift](modules/swift.md)
