@@ -1,16 +1,16 @@
-# Electron.js
+# Electron.js / Tauri
 
-_If you're looking to integrate Nucleus into a web application instead, check out the_ [_Browser SDK_](browser.md)_._
+_If you're looking to integrate Astrolytics into a web application instead, check out the_ [_Browser SDK_](browser.md)_._
 
-To start using this module, sign up and get an app ID on [Nucleus.sh](https://nucleus.sh).
+To start using this module, sign up and get an app ID on [Astrolytics.io](https://dash.astrolytics.io).
 
 ## Installation
 
 Using npm or yarn (recommended):
 
 ```bash
-$ npm install nucleus-desktop
-$ yarn add nucleus-desktop
+$ npm install astrolytics-desktop
+$ yarn add astrolytics-desktop
 ```
 
 ## Usage
@@ -20,25 +20,25 @@ First sign-up and get a tracking ID for your app [here](https://nucleus.sh).
 With ES6 imports:
 
 ```javascript
-import Nucleus from "nucleus-desktop"
+import Astrolytics from "astrolytics-desktop"
 ```
 
 Or with CommonJS imports:
 
 ```javascript
-const Nucleus = require('nucleus-desktop')
+const Astrolytics = require('astrolytics-desktop')
 ```
 
 Then:
 
 ```javascript
-Nucleus.init("<Your App Id>")
+Astrolytics.init("<Your App Id>")
 
 // Optional: sets an user ID
-Nucleus.setUserId("richard_hendrix")
+Astrolytics.setUserId("richard_hendrix")
 
 // Report things
-Nucleus.track("PLAYED_TRACK", {
+Astrolytics.track("PLAYED_TRACK", {
   trackName: "My Awesome Song",
   duration: 120,
 })
@@ -48,12 +48,12 @@ You only need to call `init` once.
 
 ### Options
 
-You can init Nucleus with options:
+You can init Astrolytics with options:
 
 ```javascript
-import Nucleus from "nucleus-desktop"
+import Astrolytics from "astrolytics-desktop"
 
-Nucleus.init("<Your App Id>", {
+Astrolytics.init("<Your App Id>", {
   deviceId: null, // device id (optional)
   disableInDev: false, // disable module while in development (default: false)
   disableTracking: false, // completely disable tracking from the start (default: false)
@@ -72,7 +72,7 @@ The module will try to autodetect a maximum of data as possible but some can fai
 You can manually add data:
 
 ```javascript
-Nucleus.setProps({
+Astrolytics.setProps({
   version: "0.3.1",
   locale: "fr",
   // ...
@@ -88,7 +88,7 @@ To get the version programmatically in Electron's renderer process you need to [
 ```javascript
 const { app } = require('@electron/remote')
 
-Nucleus.setProps({
+Astrolytics.setProps({
   version: app.getVersion(),
 })
 ```
@@ -102,13 +102,13 @@ For that, you need to supply an `userId`, a string that will allow you to track 
 It can be your own generated ID, an email, username... etc.
 
 ```javascript
-Nucleus.identify("someUniqueUserId")
+Astrolytics.identify("someUniqueUserId")
 ```
 
 You can also pass custom attributes to be reported along with it.
 
 ```javascript
-Nucleus.identify("someUniqueUserId", {
+Astrolytics.identify("someUniqueUserId", {
   age: 34,
   name: "Richard Hendricks",
   jobType: "CEO",
@@ -120,7 +120,7 @@ If you call `.identify()` multiple times, the last one will be remembered as the
 Later on, you can update the userId only (and keep the attributes) with this method:
 
 ```javascript
-Nucleus.setUserId("someUniqueUserId")
+Astrolytics.setUserId("someUniqueUserId")
 ```
 
 ### Update user attributes
@@ -129,12 +129,12 @@ You can report custom user attributes along with the automatic data.
 
 Those will be visible in your user dashboard if you previously set an user ID.
 
-The module will remember past properties so you can use `Nucleus.setProps` multiple times without overwriting past props.
+The module will remember past properties so you can use `Astrolytics.setProps` multiple times without overwriting past props.
 
 Properties can either **numbers**, **strings** or **booleans**. Nested properties or arrays aren't supported at the moment.
 
 ```javascript
-Nucleus.setProps({
+Astrolytics.setProps({
   age: 34,
   name: "Richard Hendricks",
   jobType: "CEO",
@@ -144,7 +144,7 @@ Nucleus.setProps({
 Overwrite past properties by setting the second parameter as true.
 
 ```javascript
-Nucleus.setProps({
+Astrolytics.setProps({
   age: 23
 }, true)
 ```
@@ -154,10 +154,10 @@ Nucleus.setProps({
 Send your own events and track user actions:
 
 ```javascript
-Nucleus.track("PLAYED_TRACK")
+Astrolytics.track("PLAYED_TRACK")
 ```
 
-They are a couple event names that are reserved by Nucleus: `init`, `error:` and `nucleus:`. Don't report events containing these strings.
+They are a couple event names that are reserved by Astrolytics: `init`, `error:` and `astrolytics:`. Don't report events containing these strings.
 
 #### Attach custom data
 
@@ -168,7 +168,7 @@ Properties can either **numbers**, **strings** or **booleans**. Nested propertie
 Example
 
 ```javascript
-Nucleus.track("PLAYED_TRACK", {
+Astrolytics.track("PLAYED_TRACK", {
   trackName: "My Awesome Song",
   duration: 120,
 })
@@ -176,18 +176,18 @@ Nucleus.track("PLAYED_TRACK", {
 
 #### Pages and Screen Views
 
-You can set up Nucleus to track page visits and screen views in your app.
+You can set up Astrolytics to track page visits and screen views in your app.
 
 For that, whenever the user navigates to a different page, call the `.page()` method with the new view name.
 
 ```javascript
-Nucleus.page("View Name")
+Astrolytics.page("View Name")
 ```
 
 You can attach extra info about the view. Example:
 
 ```javascript
-Nucleus.page("Cart", {
+Astrolytics.page("Cart", {
   action: "addItem",
   count: 5
 })
@@ -197,18 +197,18 @@ Params can either be **numbers**, **strings** or **booleans**. Nested params or 
 
 ### Toggle tracking
 
-This will completely disable any communication with Nucleus' servers.
+This will completely disable any communication with Astrolytics' servers.
 
 To opt-out your users from tracking, use the following methods:
 
 ```javascript
-Nucleus.disableTracking()
+Astrolytics.disableTracking()
 ```
 
 and to opt back in:
 
 ```javascript
-Nucleus.enableTracking()
+Astrolytics.enableTracking()
 ```
 
 This change won't persist after restarts so you have to handle the saving of the settings.
@@ -217,12 +217,12 @@ You can also supply a `disableTracking: true` option to the module on start if y
 
 ### Error tracking
 
-Nucleus will by default report all `uncaughtException`, `unhandledRejection` and `windowError` events.
+Astrolytics will by default report all `uncaughtException`, `unhandledRejection` and `windowError` events.
 
 If you'd like to report another type of error, you can do so with:
 
 ```javascript
-Nucleus.trackError("myCustomError", err)
+Astrolytics.trackError("myCustomError", err)
 ```
 
-Contact **hello@nucleus.sh** for any inquiry
+Contact **hello@astrolytics.io** for any inquiry
